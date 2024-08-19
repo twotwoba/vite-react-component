@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import path from 'path'
@@ -16,6 +19,11 @@ export default defineConfig({
             insertTypesEntry: true
         })
     ],
+    css: {
+        postcss: {
+            plugins: [autoprefixer, tailwindcss]
+        }
+    },
     build: {
         outDir: 'lib',
         cssTarget: 'chrome61', // 防止 vite 将 rgba() 颜色转化为 #RGBA 十六进制
