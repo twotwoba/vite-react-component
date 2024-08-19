@@ -2,7 +2,7 @@
  * * Import your component here
  */
 function App() {
-    return <>hello world</>
+    return <div>hello world</div>
 }
 
 export default App

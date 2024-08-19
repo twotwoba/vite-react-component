@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import typescript from '@rollup/plugin-typescript'
+import dts from 'vite-plugin-dts'
 
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
@@ -12,13 +12,8 @@ const __dirname = dirname(__filename)
 export default defineConfig({
     plugins: [
         react(),
-        typescript({
-            target: 'es5',
-            rootDir: path.resolve(__dirname, 'packages/'),
-            declaration: true,
-            declarationDir: path.resolve(__dirname, 'lib'),
-            exclude: path.resolve(__dirname, 'node_modules/**'),
-            allowSyntheticDefaultImports: true
+        dts({
+            insertTypesEntry: true
         })
     ],
     build: {
@@ -26,9 +21,8 @@ export default defineConfig({
         cssTarget: 'chrome61', // 防止 vite 将 rgba() 颜色转化为 #RGBA 十六进制
         lib: {
             entry: path.resolve(__dirname, 'packages/index.ts'),
-            // 组件库名称
-            name: 'MyPackages',
-            fileName: 'my-packages'
+            name: 'PackageName',
+            fileName: 'package-name'
         },
         rollupOptions: {
             external: ['react', 'react-dom'],
