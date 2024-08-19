@@ -1,2 +1,3 @@
 # vite-react-component
-A template for create react components
+
+A template for create react components.
